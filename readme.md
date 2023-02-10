@@ -1,33 +1,5 @@
 ## Math API Server
 
-This time we're going to write an API server that solves math problems for us. Each route is a different formula to solve, and values will be passed as GET arguments.
-
-Let's look at the area of a square route below. The route is listed as `/area/square` with one variable `s`. Calling `http://localhost:3001/area/square?s=10` should return JSON with the answer.  For that route the JSON returned would be.
-
-```json
-{
-    "a": 100,
-    "s": 10
-}
-```
-
-_Note that they keys in the JSON are lower case._
-
-Each route must return any variables passed and the solution. Use the letters in the formulas listed as keys.
-
-Routes must also return their data with the `application/json` content type and a `200` status code header, assuming it was a good request. 
-
-There are two "bad requests" that you also need to account for.
-
-* Incorrect route. This needs to return a 404 status header. 
-* Invalid or missing GET variables. This should return a 400 status header. This would be cases like `/area/square?x=10` where the variable is `x` instead of `s` or just calling `/area/square` without any variables. 
-
-
-
-Your code needs to start in the `mathapi.py` file, but you can add additional files if you would like. Running `python mathapi.py` should start your server.
-
-The server needs to be attached to `127.0.0.1` on port `3001`
-
 ### Area Routes
 
 #### Square
@@ -88,7 +60,7 @@ The server needs to be attached to `127.0.0.1` on port `3001`
 | b        | Side length b |
 | c        | Side length c |
 
-On this one, `s` should be included in the returned JSON.
+On this one, `s` is included in the returned JSON.
 
 
 
@@ -159,7 +131,6 @@ Use `math.pi` instead of 3.14
 
 ![surface-sphere](img/readme/surface-sphere.png)
 
-Use `math.pi` instead of 3.14
 
 | Variable | Notes            |
 | -------- | ---------------- |
@@ -350,13 +321,10 @@ Use `math.pi` instead of 3.14
 
 ![pythag](img/readme/pythag.png)
 
-Use to solve for the third side in a right triangle. 
 
-This one is going to be a little different than most of the other routes. You'll only send 2 of the 3 variables and your implementation should solve for the third. 
+The JSON returned contains all 3 values.
 
-The JSON returned will contain all 3 values.
-
-Calls to `/pythag?a=3&b=4`, `/pythag?b=4&c=5` & `/pythag?a=3&c=5` should all return the same JSON below. 
+For example calls to `/pythag?a=3&b=4`, `/pythag?b=4&c=5` & `/pythag?a=3&c=5` should all return the same JSON below. 
 
 ```json
 {
@@ -365,8 +333,6 @@ Calls to `/pythag?a=3&b=4`, `/pythag?b=4&c=5` & `/pythag?a=3&c=5` should all ret
     "c": 5
 }
 ```
-
-
 
 
 
@@ -382,7 +348,7 @@ Solve for the average of all numbers passed as a comma separated list.
 | -------- | ------------------------------------------------------------ |
 | nums     | A comma separated list of integers to average. For example, if you want to average the numbers 1, 2, & 3 the route would look like `/mean?nums=1,2,3` |
 
-In the JSON returned, the values should be returned as an array. For example, `/mean?nums=1,2,3` should return the following JSON.
+In the JSON returned, the values are returned as an array. For example, `/mean?nums=1,2,3` should return the following JSON.
 
 ```json
 {
@@ -401,13 +367,13 @@ In the JSON returned, the values should be returned as an array. For example, `/
 
 `/median`
 
-Find the median value, the value in the middle, of a comma separated list of integers.  If there are an odd number of values, it is the middle value. If there are an even number of values, it is the average of the middle two. 
+Finds the median value, the value in the middle, of a comma separated list of integers.  If there are an odd number of values, it is the middle value. If there are an even number of values, it is the average of the middle two. 
 
 | Variable | Description                      |
 | -------- | -------------------------------- |
 | nums     | Comma separate list of integers. |
 
-Like the mean route, `nums` should be included in the returned JSON as an array. 
+Like the mean route, `nums` is included in the returned JSON as an array. 
 
 
 
@@ -415,10 +381,10 @@ Like the mean route, `nums` should be included in the returned JSON as an array.
 
 `/mode`
 
-Find the mode - the most common - of a list of comma separated values. 
+Finds the mode - the most common - of a list of comma separated values. 
 
 | Variable | Description                      |
 | -------- | -------------------------------- |
 | nums     | Comma separate list of integers. |
 
-Like the mean route, `nums` should be included in the returned JSON as an array. 
+Like the mean route, `nums` is included in the returned JSON as an array. 
